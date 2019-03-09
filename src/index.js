@@ -1,29 +1,29 @@
 module.exports = function getZerosCount(number, base) {
-    var maxi, deli;
+    var maxi, deli;//Number and pow of this number
     var min = 0;
-    var n = number;
+    var n = number;//We have  copy of number
     var sum1 = 0, sum2 = 0;
     var simple = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251];
-    var divideSimple = {};
+    var divideSimple = {};//Hash for numbers and its powers.
 
 
-    for (var i = 0, j = 0; base > 1; i++) {
+    for (var i = 0, j = 0; base > 1; i++) {//decompose a number into prime factors
         while (base % simple[i] == 0) {
-            if (simple[i] in divideSimple)
+            if (simple[i] in divideSimple)//if we have this simple number in out hash ==> we add pow
                 divideSimple[simple[i]] += 1;
             else
-                divideSimple[simple[i]] = 1;
+                divideSimple[simple[i]] = 1;//if we haven't this simple number in out hash ==> we add
             base = base / simple[i];
 
         }
 
     }
-    var divideSimpleKeys = (Object.keys(divideSimple));
+    var divideSimpleKeys = (Object.keys(divideSimple));//show our simple numbers
     var max = 0;
 
     for (var i = 0; i < divideSimpleKeys.length; i++) {
-        a = (divideSimpleKeys[i]);
-        var b = (divideSimple[divideSimpleKeys[i]]);
+        a = (divideSimpleKeys[i]);//our number
+        var b = (divideSimple[divideSimpleKeys[i]]);//pow
         var pow = (Math.pow(a, b));
         if (pow > max) {
             max = pow;
